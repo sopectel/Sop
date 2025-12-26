@@ -1,81 +1,64 @@
-/* Basic reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html,body { height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; background:#fff; }
-
-/* Page layout */
-.site-header {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 18px 24px;
-  max-width: 1100px;
-  margin: 0 auto;
+:root{
+  --bg: #ffffff;
+  --text: #0f1720;
+  --muted: #6b7280;
+  --accent: #00448A; /* matches logo fill */
+  --accent-2: #0b57b7;
+  --radius: 10px;
+  --container: 1100px;
 }
 
-/* Brand: logo top-left with motto beneath */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Reset & base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:var(--accent);text-decoration:none}
+a:focus{outline:3px solid rgba(0,68,138,.12);outline-offset:3px}
+
+/* Header */
+.site-header{border-bottom:1px solid #eef2f7;background:linear-gradient(180deg, rgba(0,68,138,0.02), transparent);position:sticky;top:0;z-index:40}
+.header-inner{max-width:var(--container);margin:0 auto;padding:18px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+
+/* Brand column (logo + motto) */
+.brand{display:flex;flex-direction:column;gap:8px}
+.logo-link{display:inline-block;width:160px}
+.logo-svg{width:100%;height:auto;display:block}
+.motto{font-size:0.82rem;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:0.02em}
+
+/* Contact block (a few lines below visually) */
+.contact{display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-top:8px}
+.contact-title{font-family:Poppins,Inter;font-weight:600;color:var(--text)}
+.contact-lines{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.contact-email, .contact-phone{background:rgba(0,68,138,0.04);padding:6px 10px;border-radius:8px;font-weight:600;color:var(--accent);transition:background .18s ease}
+.contact-email:hover, .contact-phone:hover{background:rgba(11,87,183,0.06)}
+.contact-note{font-size:0.82rem;color:var(--muted)}
+
+/* Main / Hero */
+.main-content{max-width:var(--container);margin:30px auto;padding:0 24px}
+.hero{display:flex;flex-direction:column;gap:18px;padding:36px;border-radius:14px}
+.hero-title{font-family:Poppins,Inter;font-weight:700;font-size:1.9rem;color:var(--text)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:70%}
+.cta{display:inline-block;margin-top:8px;padding:10px 16px;background:var(--accent);color:#fff;border-radius:10px;font-weight:600;box-shadow:0 6px 20px rgba(4,16,40,0.06);transition:transform .14s ease,box-shadow .14s ease}
+.cta:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(4,16,40,0.08)}
+
+/* Info section */
+.info{margin-top:26px;padding:18px 12px;border-left:4px solid var(--accent);background:linear-gradient(90deg, rgba(0,68,138,0.02), transparent)}
+.info h2{font-family:Poppins,Inter;margin-bottom:8px}
+.info-text{color:var(--muted)}
+
+/* Footer */
+.site-footer{border-top:1px solid #f1f5f9;margin-top:40px;background:transparent}
+.footer-inner{max-width:var(--container);margin:18px auto;padding:12px 24px;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:920px){
+  .header-inner{flex-direction:column;align-items:flex-start;gap:12px}
+  .contact{align-items:flex-start}
+  .hero-sub{max-width:100%}
+  .logo-link{width:140px}
 }
 
-/* Logo image styling */
-.logo-img {
-  display: block;
-  width: 140px;       /* adjust to change logo size */
-  height: auto;
-}
-
-/* Motto: small font below or to the right depending on screen size */
-.motto {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 0.85rem;      /* small font */
-  color: #555;
-  margin-left: 6px;
-}
-
-/* Contact block — placed a few lines below visually */
-.contact {
-  margin-top: 8px;
-  padding-left: 4px;
-  color: #333;
-  font-size: 0.95rem;
-}
-
-/* Slight emphasis on the Contact title */
-.contact-title {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-/* Spacing between contact lines */
-.contact-line { margin-bottom: 6px; }
-
-/* Small note under contact info */
-.contact-note {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 4px;
-}
-
-/* Responsive: for wider screens place brand and contact side by side */
-@media (min-width: 760px) {
-  .site-header {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-  .brand { align-items: flex-start; }
-  .motto { margin-left: 12px; }
-  .contact { margin-top: 0; text-align: right; }
-  .contact-line a { display: inline-block; }
-}
-
-/* Simple main content layout */
-.content {
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 24px;
+@media (max-width:520px){
+  .logo-link{width:120px}
+  .hero-title{font-size:1.4rem}
+  .cta{padding:10px 14px}
 }
